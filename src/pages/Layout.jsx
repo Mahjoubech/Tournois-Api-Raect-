@@ -1,8 +1,31 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
+
 export default function Layout() {
-  const {user} = useContext(AppContext);
+  const { user, token, setUser, setToken } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  async function handleLogout(e) {
+    e.preventDefault();
+    const res = await fetch("/api/logout", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (res.ok) {
+      setUser(null);
+      setToken(null);
+      localStorage.removeItem("token");
+      navigate("/login"); // ✅ correct way to navigate programmatically
+    }
+  }
+
   return (
     <>
       <header>
@@ -10,30 +33,33 @@ export default function Layout() {
           <Link to="/" className="nav-link">
             Home
           </Link>
+
           {user ? (
-            <div className="space-x-4">
-              {" "}
+            <div className="flex items-center space-x-4">
               <Link to="/profile" className="nav-link">
-                <i class="fa-solid fa-user"></i>
-                {user.name}{" "}
+                <i className="fa-solid fa-user"></i> {user.name}
               </Link>
-              <Link to="/logout" className="nav-link">
-                <i class="fa-solid fa-right-from-bracket"></i>logout
-              </Link>
+
+              <form onSubmit={handleLogout}>
+                <button type="submit" className="nav-link">
+                  <i className="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+              </form>
             </div>
           ) : (
             <div className="space-x-4">
               <Link to="/register" className="nav-link">
-                register
+                Register
               </Link>
 
               <Link to="/login" className="nav-link">
-                login
+                Login
               </Link>
             </div>
           )}
         </nav>
       </header>
+
       <main>
         <Outlet />
       </main>
