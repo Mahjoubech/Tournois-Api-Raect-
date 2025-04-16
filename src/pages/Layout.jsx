@@ -22,7 +22,7 @@ export default function Layout() {
       setUser(null);
       setToken(null);
       localStorage.removeItem("token");
-      navigate("/login"); // ✅ correct way to navigate programmatically
+      navigate("/"); 
     }
   }
 
