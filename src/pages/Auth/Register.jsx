@@ -1,6 +1,10 @@
 import { useState } from "react";
-
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 export default function Register() {
+    const navigate = useNavigate();
+    const {setToken } = useContext(AppContext); 
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -18,6 +22,9 @@ export default function Register() {
          if (data.errors) {
             setErrors(data.errors);
          }else{
+            localStorage.setItem("token", data.token);
+            setToken(data.token);
+            navigate("/");
             console.log(data);
 
          }
