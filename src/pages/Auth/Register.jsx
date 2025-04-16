@@ -9,7 +9,6 @@ export default function Register() {
         name: "",
         email: "",
         password: "",
-        confirmPassword: "",
     });
     const [errors, setErrors] = useState({});
     async function handleRegister(e) {
@@ -25,8 +24,6 @@ export default function Register() {
             localStorage.setItem("token", data.token);
             setToken(data.token);
             navigate("/");
-            console.log(data);
-
          }
     }
 
