@@ -35,10 +35,16 @@ export default function Layout() {
           </Link>
 
           {user ? (
+           
             <div className="flex items-center space-x-4">
+               <Link to="/create" className="nav-link">
+            <i className="fa-solid fa-add"></i>
+            Add Tournois
+          </Link>
               <Link to="/profile" className="nav-link">
                 <i className="fa-solid fa-user"></i> {user.name}
               </Link>
+              
 
               <form onSubmit={handleLogout}>
                 <button type="submit" className="nav-link">
