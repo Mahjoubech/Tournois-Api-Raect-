@@ -9,6 +9,8 @@ import { AppContext } from './context/AppContext';
 import { useContext } from 'react';
 import Home from './pages/Home';
 import './App.css';
+import CreatePlayer from './pages/Players/CreatePlayer';
+import CreateScore  from './pages/Score/CreateScore';
 
 export default function App() {
   const {user} = useContext(AppContext);
@@ -22,6 +24,8 @@ export default function App() {
             <Route path="/login" element={user ?  <Home /> : <Login />} />
             <Route path="/create" element={user ?  <Create /> : <Login />} />
             <Route path="/createMatch" element={user ?  <CreateMatch /> : <Login />} />
+            <Route path="/createScore" element={user ?  <CreateScore /> : <Login />} />
+            <Route path="/createPlayer" element={user ?  <CreatePlayer /> : <Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
