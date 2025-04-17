@@ -4,6 +4,7 @@ import Layout from './pages/Layout';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Create from './pages/Tournois/Create';
+import CreateMatch from './pages/Matches/CreateMatch';
 import { AppContext } from './context/AppContext';
 import { useContext } from 'react';
 import Home from './pages/Home';
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/register" element={user ?  <Home /> : <Register />} />
             <Route path="/login" element={user ?  <Home /> : <Login />} />
             <Route path="/create" element={user ?  <Create /> : <Login />} />
+            <Route path="/createMatch" element={user ?  <CreateMatch /> : <Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
