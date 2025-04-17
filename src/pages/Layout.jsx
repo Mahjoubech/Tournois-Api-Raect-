@@ -52,12 +52,27 @@ export default function Layout() {
                   Add Match
                 </Link>
                 <Link
+                  to="/createPlayer"
+                  className="flex items-center px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+                >
+                  <i className="fa-solid fa-add mr-2"></i>
+                  Add players
+                </Link>
+                <Link
+                  to="/createScore"
+                  className="flex items-center px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+                >
+                  <i className="fa-solid fa-add mr-2"></i>
+                  Add Scores
+                </Link>
+                <Link
                   to="/profile"
                   className="flex items-center text-gray-300 hover:text-white transition-colors"
                 >
                   <i className="fa-solid fa-user mr-2"></i>
                   <span>{user.name}</span>
                 </Link>
+
 
                 <form onSubmit={handleLogout}>
                   <button
