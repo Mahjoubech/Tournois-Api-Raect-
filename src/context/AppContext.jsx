@@ -8,7 +8,7 @@ export default function AppProvider({ children }) {
 
     async function getUser() {
       const res = await fetch('/api/user', {
-        method: 'GET',
+        method: 'get',
         headers: {
           Authorization: `Bearer ${token}`,
         },
